@@ -76,3 +76,28 @@
 
 	mySecondMap := make(map[string]interface{}) - тип value не задан, не рекомендуется использовать
 	```
+
+## Операторы ветвления (if-else, switch-case)
+
+* В языке Go представлено два оператора ветвления: if-else и switch-case. Их реализация и функционал стандартны:
+ 
+	```
+	if isTrue {
+		log.Println("true")
+	} else {
+		log.Println("false")
+	}
+	```
+
+	```
+	switch myInt {
+	case 99:
+		log.Println("99")
+	case 100:
+		log.Println("100")
+	case 101:
+		log.Println("101")
+	default:
+		log.Println("else")
+	}
+	```
