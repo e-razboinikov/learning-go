@@ -58,3 +58,21 @@
 	return m.FirstName
 	}
 	```
+
+## Массивы и словари (Slices and Maps)
+  * Slice - массив в языке Go. Можем объявляться как с явной, так и с неявной типизацией:
+	```
+	var mySlice []int - явная типизация
+
+	mySlice := []int{1, 2, 3} - неявная типизация
+	```
+* Чтобы добавить элемент в массив используется метод append: 
+	```
+	mySlice = append(mySlice, 4, 5, 6)
+	```
+* Map - словарь ключ - значение (key - value), стандартная реализация. Способы объявления:
+	```
+	myMap := make(map[string]string)
+
+	mySecondMap := make(map[string]interface{}) - тип value не задан, не рекомендуется использовать
+	```
