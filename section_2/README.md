@@ -101,3 +101,24 @@
 		log.Println("else")
 	}
 	```
+
+## Цикл for
+
+* В Go используется только один цикл - for:
+	```
+	for i := 0; i <= 10; i++ {
+		log.Println(i * i)
+	}
+	```
+* Так же есть вариция цикла for для итеррации по массивам и словарям - range: 
+	```
+	for i, x := range myMap {
+		log.Println(i, x)
+	}
+	```
+
+	```
+	for i, x := range mySlice {
+		log.Println(i, x.FirstName)
+	}
+	```
