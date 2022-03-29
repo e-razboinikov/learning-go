@@ -19,10 +19,16 @@ func main() {
 		fmt.Printf("Error while getting template canche, error: %s", err)
 	}
 
-	app.templateCache = templateCache
+	app.UseCache = false
+	app.TemplateCache = templateCache
 
-	http.HandleFunc("/", handlers.Home)
-	http.HandleFunc("/about", handlers.About)
+	repo := handlers.NewRepo(&app)
+	handlers.NewHandles(repo)
+
+	render.NewTemplates(&app)
+
+	http.HandleFunc("/", handlers.Repo.Home)
+	http.HandleFunc("/about", handlers.Repo.About)
 
 	fmt.Println(fmt.Sprintf("Application has started on port %s", portNumber))
 	http.ListenAndServe(portNumber, nil)
