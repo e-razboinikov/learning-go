@@ -4,5 +4,6 @@ import "text/template"
 
 /// AppConfig содержит настройки приложения
 type AppConfig struct {
-	templateCache map[string]*template.Template
+	UseCache      bool
+	TemplateCache map[string]*template.Template
 }

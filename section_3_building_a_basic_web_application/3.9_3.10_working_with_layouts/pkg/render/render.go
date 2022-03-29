@@ -7,20 +7,37 @@ import (
 	"net/http"
 	"path/filepath"
 	"text/template"
+
+	"github.com/e-razboinikov/learning-go/3.9/pkg/config"
 )
 
 var functions = template.FuncMap{}
 
+var appConfig *config.AppConfig
+
+/// NewTemplates передает AppConfig в Render
+func NewTemplates(ac *config.AppConfig) {
+	appConfig = ac
+}
+
 /// RenderTemlate - это функция, позволяющая отображать html-шаблоны на экране
 func RenderTemplate(writer http.ResponseWriter, templateString string) {
-	templateCache, err := CreateTemplateCache()
-	if err != nil {
-		log.Fatal(err)
+	var templateCache map[string]*template.Template
+	var err error
+
+	// Если UseCache == true, то используем кэш, иначе пересоздаем его каждый раз
+	if appConfig.UseCache {
+		templateCache = appConfig.TemplateCache
+	} else {
+		templateCache, err = CreateTemplateCache()
+		if err != nil {
+			fmt.Printf("Error creating new template cache, error: %s", err)
+		}
 	}
 
 	tmpl, ok := templateCache[templateString]
 	if !ok {
-		log.Fatalf("Template didnt founded, error: %s", err)
+		log.Fatal("Template didnt founded")
 	}
 
 	buffer := new(bytes.Buffer)
